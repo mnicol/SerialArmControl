@@ -1,0 +1,32 @@
+2 bits - length of command
+2 bits - opcode
+
+Servo Functions
+				
+	00	Move To Degree
+			Opcode 00
+			Servo 0 - 4
+			Amount 0 - 180
+
+	01	Move Positive Degrees
+			Opcode 01
+			Servo 0 - 4
+			Amount 0 - 90
+
+	02	Move Negative Degrees
+			Opcode 02
+			Servo 0 - 4
+			Amount 0 - 90 (Enter positive number)
+
+	03 Reset Servos to default positions
+			Opcode 03
+
+GPIO Functions
+	
+	04	Write To Pin
+
+	05	Read Pin
+
+	06	Write Analog
+
+	07	Read Analog
