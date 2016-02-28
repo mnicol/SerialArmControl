@@ -25,11 +25,11 @@ int elbowPos;
 int wristPos;
 int handPos;
 
-Servo BaseRotate;     // HS-485HB   (600 | 1500 | 2400)
-Servo ArmBase;        // HS-805BB+  (600 | 1500 | 2400)
-Servo Elbow;          // HS-755HB   (600 | 1500 | 2400)
-Servo Wrist;          // HS-645MG   (600 | 1500 | 2400)
-Servo Hand;           // HS-425BB   (600 | 1500 | 2400)
+Servo BaseRotate;     // HS-485HB   (600 | 1500 | 2400) PIN: 11
+Servo ArmBase;        // HS-805BB+  (600 | 1500 | 2400) PIN: 10
+Servo Elbow;          // HS-755HB   (600 | 1500 | 2400) PIN: 9
+Servo Wrist;          // HS-645MG   (600 | 1500 | 2400) PIN: 6
+Servo Hand;           // HS-425BB   (600 | 1500 | 2400) PIN: 5
 
 void setup()
 {
