@@ -25,6 +25,7 @@ int elbowPos;
 int wristPos;
 int handPos;
 
+int curPos;
 int delayAmount;
 
 
@@ -154,6 +155,8 @@ void loop()
         servoNum = nextByte - 48;
         
         moveAmount = getInt();
+
+        Serial.println(moveAmount);
         
         moveByOffset(servoNum, moveAmount);
         
@@ -165,6 +168,8 @@ void loop()
         servoNum = nextByte - 48;
         
         moveAmount = getInt();
+
+        Serial.println(moveAmount);
         
         moveByOffset(servoNum, -moveAmount);
         
@@ -263,8 +268,8 @@ void moveByOffset(int servo, int moveAmount)
   {
      case ROTATE:
        Serial.print("Rotate by ");
-       Serial.println(moveAmount);
-       
+       Serial.print(moveAmount);
+
        rotatePos += moveAmount;
        
        if(rotatePos > 180)
@@ -272,15 +277,18 @@ void moveByOffset(int servo, int moveAmount)
          
        if(rotatePos < 0)
          rotatePos = 0;
-       
+
        BaseRotate.write(rotatePos);
+       delay(8);
+       Serial.print(" Final Pos: ");
+       Serial.println(rotatePos);
        
      break; 
        
      case BASE:
        Serial.print("Base by ");
        Serial.println(moveAmount);
-       
+
        basePos += moveAmount;
        
        if(basePos > 180)
@@ -288,14 +296,18 @@ void moveByOffset(int servo, int moveAmount)
          
        if(basePos < 0)
          basePos = 0;
-       
+
        ArmBase.write(basePos);
+       delay(8);
+       
+       Serial.print(" Final Pos: ");
+       Serial.println(basePos);
      break;
        
      case ELBOW:
        Serial.print("Elbow by ");
        Serial.println(moveAmount);
-       
+
        elbowPos += moveAmount;
        
        if(elbowPos > 180)
@@ -303,14 +315,18 @@ void moveByOffset(int servo, int moveAmount)
          
        if(elbowPos < 0)
          elbowPos = 0;
-       
+
        Elbow.write(elbowPos);
+       delay(8);
+
+       Serial.print(" Final Pos: ");
+       Serial.println(elbowPos);
      break;
   
     case WRIST:
        Serial.print("Wrist by ");
        Serial.println(moveAmount);
-       
+
        wristPos += moveAmount;
        
        if(wristPos > 180)
@@ -318,23 +334,30 @@ void moveByOffset(int servo, int moveAmount)
          
        if(wristPos < 0)
          wristPos = 0;
-       
+
        Wrist.write(wristPos);
+       delay(8);
+
+       Serial.print(" Final Pos: ");
+       Serial.println(wristPos);
      break;
        
      case GRIP:
        Serial.print("Grip by ");
-       Serial.println(degree);
-       
+       Serial.println(moveAmount);
+
        handPos += moveAmount;
-       
        if(handPos > 180)
          handPos = 180;
          
        if(handPos < 0)
          handPos = 0;
-       
+
        Hand.write(handPos);
+       delay(8);
+
+       Serial.print(" Final Pos: ");
+       Serial.println(handPos);
      break;
        
      default:
