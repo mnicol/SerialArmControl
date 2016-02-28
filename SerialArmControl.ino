@@ -25,6 +25,9 @@ int elbowPos;
 int wristPos;
 int handPos;
 
+int delayAmount;
+
+
 Servo BaseRotate;     // HS-485HB   (600 | 1500 | 2400) PIN: 11
 Servo ArmBase;        // HS-805BB+  (600 | 1500 | 2400) PIN: 10
 Servo Elbow;          // HS-755HB   (600 | 1500 | 2400) PIN: 9
@@ -34,24 +37,72 @@ Servo Hand;           // HS-425BB   (600 | 1500 | 2400) PIN: 5
 void setup()
 {
   Serial.begin(9600);
+
+  Serial.println("Starting Setup");
+
   
   // Setup Servos
-  // Setup servos
+  Serial.println("Attaching Servos...");
   BaseRotate.attach(11, 600, 2400);
   ArmBase.attach(10, 600, 2400);
   Elbow.attach(9, 600, 2400);
   Wrist.attach(6, 600, 2400);
   Hand.attach(5, 600, 2400);
-  
+  Serial.println("Done.");
+  Serial.println("");
+
+  // Set default position variables
+  Serial.println("Setting Default Values...");
   rotatePos = 90;
-  basePos = 90;
-  elbowPos = 90;
+  basePos = 92;
+  elbowPos = 96;
   wristPos = 90;
   handPos = 0;
+  Serial.println("Done.");
+  Serial.println("");
+
+  // Set arm to default position
+  Serial.println("Moving Servos to Default Positions...");
+  BaseRotate.write(rotatePos);
+  delay(500);
+  
+  ArmBase.write(basePos);
+  delay(500);
+  
+  Elbow.write(elbowPos);
+  delay(500);
+  
+  Wrist.write(wristPos);
+  delay(500);
+  
+  Hand.write(handPos);
+  delay(1000);
+  Serial.println("Done.");
+  Serial.println("");
+
+  Serial.println("Setup Complete");
+  
 }
 
 void loop()
 {
+  /*delayAmount = 8;
+  
+  for (wristPos = 0; wristPos <= 180; wristPos += 1) { // goes from 0 degrees to 180 degrees
+    // in steps of 1 degree
+    Wrist.write(wristPos);              // tell servo to go to position in variable 'pos'
+    delay(delayAmount);                       // waits 15ms for the servo to reach the position
+    if(wristPos >= 170)
+      delayAmount += 1;
+  }
+  delayAmount = 4;
+  for (wristPos = 180; wristPos >= 0; wristPos -= 1) { // goes from 180 degrees to 0 degrees
+    Wrist.write(wristPos);              // tell servo to go to position in variable 'pos'
+    delay(delayAmount);                       // waits 15ms for the servo to reach the position
+    if(wristPos <= 10)
+      delayAmount += 1;
+  }*/
+  
   // Variables
   opcode = -1;
   
